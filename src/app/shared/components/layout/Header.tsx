@@ -43,7 +43,12 @@ export const Header = () => {
         <img src="https://via.placeholder.com/80" alt="" />
       </div>
       <div>
-        <input type="text" name="search" id="search" />
+        <input
+          type="text"
+          name="search"
+          id="search"
+          placeholder="Faça uma busca"
+        />
         <button>
           <MagnifyingGlass weight="regular" />
         </button>
