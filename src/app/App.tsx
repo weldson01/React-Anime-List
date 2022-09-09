@@ -1,28 +1,25 @@
-import { useEffect, useState } from "react";
-import { ApiServices } from "./services/api/ApiServices";
-import { IAnime } from "./shared/types/TypesAnime";
+import { BrowserRouter } from "react-router-dom";
+import { createGlobalStyle } from "styled-components";
+import { AppRoutes } from "./routes";
+import { Footer, Header } from "./shared/components";
+
+const GlobalStyle = createGlobalStyle`
+  *{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+  }
+`;
+
 export const App = () => {
-  const [animesRecentes, setAnimesRecentes] = useState<IAnime[]>(
-    [] as IAnime[]
-  );
-
-  useEffect(() => {
-    ApiServices.recentRealize().then((data) => {
-      setAnimesRecentes(data);
-      console.log(data);
-    });
-  }, []);
-
   return (
-    <div>
-      {animesRecentes?.map((anime) => {
-        return (
-          <>
-            <p>{anime.animeTitle}</p>
-            <img src={anime.animeImg} alt={anime.animeTitle} />
-          </>
-        );
-      })}
-    </div>
+    <>
+      <Header />
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+      <Footer />
+      <GlobalStyle />
+    </>
   );
 };
