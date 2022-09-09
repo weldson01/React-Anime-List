@@ -1,4 +1,7 @@
+import { useState, useEffect } from "react";
 import styled from "styled-components";
+import { ApiServices } from "../../../services/api/ApiServices";
+import { IAnime, IAnimeDetails } from "../../../shared/types/TypesAnime";
 
 const Destaque = styled.div`
   margin: 1.5rem 0 1.5rem 0;
@@ -19,29 +22,49 @@ const Destaque = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #000;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0),
+      rgba(0, 0, 0),
+      rgba(0, 0, 0, 0.7)
+    );
     img {
       width: 100%;
-      filter: opacity(0.8);
+      filter: opacity(0.5);
     }
     .anime-destaque-info {
       position: absolute;
       bottom: 5rem;
       left: 2rem;
+      color: #fff;
     }
   }
 `;
+interface IAnimeDestaqueProps {
+  animeID: string;
+}
 
-export const AnimeDestaque = () => {
+export const AnimeDestaque = ({ animeID }: IAnimeDestaqueProps) => {
+  const [animeDetails, SetAnimeDetails] = useState<IAnimeDetails>(
+    {} as IAnimeDetails
+  );
+  useEffect(() => {
+    if (animeID.length > 0) {
+      ApiServices.getAnimeDetails(animeID).then((data) => {
+        SetAnimeDetails(data);
+      });
+    }
+  }, [animeID]);
+
   return (
     <Destaque>
       <h2>Anime Destaque</h2>
       <div>
         <div className="image-wrapper">
-          <img src="https://via.placeholder.com/400" alt="" />
+          <img src={animeDetails?.animeImg} alt={animeDetails?.animeTitle} />
           <div className="anime-destaque-info">
-            <h3>Title Anime destaque</h3>
-            <p>Sinopse</p>
+            <h3>{animeDetails?.animeTitle}</h3>
+            <p>{animeDetails?.synopsis}</p>
           </div>
         </div>
       </div>

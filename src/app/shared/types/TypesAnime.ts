@@ -7,3 +7,15 @@ export interface IAnime {
   animeImg?: string;
   episodeUrl?: string;
 }
+export interface IAnimeDetails {
+  animeTitle: string;
+  type: string;
+  releasedDate: string;
+  status: string;
+  genres: [];
+  otherNames: string;
+  synopsis: string;
+  animeImg: string;
+  totalEpisodes: string;
+  episodesList: [];
+}
