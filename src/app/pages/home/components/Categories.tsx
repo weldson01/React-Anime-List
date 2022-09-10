@@ -29,9 +29,13 @@ const ListOfCategories = styled.ul`
     text-align: center;
     border-radius: 30px;
     border: 1px solid black;
-    background-color: #333;
+    background-color: #222;
     color: #fff;
     padding: 0.5rem 1rem;
+    cursor: pointer;
+    &:hover {
+      background-color: #444;
+    }
   }
 `;
 

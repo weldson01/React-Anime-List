@@ -5,8 +5,8 @@ const recentRealize = async (): Promise<IAnime[]> => {
   const response = await Api().get("recent-release");
   return response.data;
 };
-const getPopular = async (): Promise<IAnime[]> => {
-  const response = await Api().get("popular");
+const getPopular = async (page: string): Promise<IAnime[]> => {
+  const response = await Api().get(`popular${page}`);
   return response.data;
 };
 const getAnimeDetails = async (animeTitle: string): Promise<IAnimeDetails> => {
