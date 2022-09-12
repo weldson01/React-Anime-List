@@ -5,10 +5,9 @@ import { IAnime } from "../../shared/types/TypesAnime";
 import {
   Categories,
   AnimeDestaque,
-  AnimesPopulares,
   PaginationPopularAnime,
 } from "./components";
-
+import { CardAnimes } from "../../shared/components";
 export const Home = () => {
   const [popularAnimes, setPopularAnimes] = useState<IAnime[]>([] as IAnime[]);
   const [pagePopular, setPagePopular] = useState(1);
@@ -32,7 +31,7 @@ export const Home = () => {
         />
       )}
       <Categories />
-      <AnimesPopulares animes={popularAnimes} />
+      <CardAnimes animes={popularAnimes} title="Popular Animes" />
       <PaginationPopularAnime
         pageFunction={handleSelecetPage}
         page={pagePopular}

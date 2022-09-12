@@ -96,6 +96,9 @@ const ShowAnime = styled.div`
     }
     p {
       font-size: 1.5rem;
+      &::first-letter {
+        padding-left: 1rem;
+      }
     }
   }
 `;
@@ -144,7 +147,7 @@ export const AnimeView = ({ animeId }: IAnimeViewProps) => {
           <h2>{anime?.animeTitle}</h2>
         </div>
         <div className="synopsis-anime">
-          <p>{anime?.synopsis}</p>
+          <p>{`${anime?.synopsis?.slice(0, 1000)} ...`}</p>
         </div>
       </div>
     </ShowAnime>

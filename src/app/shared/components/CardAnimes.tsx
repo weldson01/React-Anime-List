@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { IAnime } from "../../../shared/types/TypesAnime";
+import { IAnime } from "../types/TypesAnime";
 
-const AnimesListPopulares = styled.ul`
+const AnimesList = styled.ul`
   display: flex;
   flex-flow: row wrap;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   list-style: none;
+  max-width: 1300px;
   li {
     position: relative;
     overflow: hidden;
@@ -46,14 +47,15 @@ const AnimesListPopulares = styled.ul`
   }
 `;
 
-interface IAnimesPopularesProps {
+interface ICardAnimes {
   animes: IAnime[];
+  title: string;
 }
-export const AnimesPopulares = ({ animes }: IAnimesPopularesProps) => {
+export const CardAnimes = ({ animes, title }: ICardAnimes) => {
   return (
     <>
-      <h3 style={{ fontSize: "1.5rem", margin: "1rem 0" }}>Animes populares</h3>
-      <AnimesListPopulares>
+      <h3 style={{ fontSize: "1.5rem", margin: "2rem 0" }}>{title}</h3>
+      <AnimesList>
         {animes &&
           animes.map((anime: IAnime) => {
             return (
@@ -73,7 +75,7 @@ export const AnimesPopulares = ({ animes }: IAnimesPopularesProps) => {
               </li>
             );
           })}
-      </AnimesListPopulares>
+      </AnimesList>
     </>
   );
 };

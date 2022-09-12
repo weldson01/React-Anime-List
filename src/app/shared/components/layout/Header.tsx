@@ -5,7 +5,7 @@ const HeaderPage = styled.header`
   flex-flow: row nowrap;
   justify-content: space-around;
   align-items: center;
-  background-color: #333;
+  background-color: #2c3333;
 
   div:nth-child(2) {
     display: flex;
@@ -14,24 +14,24 @@ const HeaderPage = styled.header`
 
   div input {
     width: 20rem;
-    height: 3rem;
+    height: 2.5rem;
     border-radius: 30px 0px 0px 30px;
     outline: none;
     padding-left: 20px;
     font-size: 1.5rem;
     &:focus {
-      border: 3px solid rgb(255, 200, 0);
+      border: 3px solid #a5c9ca;
     }
   }
 
   div button {
     width: 4rem;
-    height: 3rem;
-    font-size: 1.5rem;
+    height: 2.5rem;
+    font-size: 1.3rem;
     border-radius: 0px 30px 30px 0px;
     cursor: pointer;
     &:active {
-      background-color: #999;
+      background-color: #e7f6f2;
     }
   }
 `;

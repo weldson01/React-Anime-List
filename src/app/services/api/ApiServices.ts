@@ -13,9 +13,22 @@ const getAnimeDetails = async (animeId: string): Promise<IAnimeDetails> => {
   const response = await Api().get(`anime-details/${animeId}`);
   return response.data;
 };
-
+interface IGetAnimesFromCategoryProps {
+  category: string;
+  page?: number;
+}
+const getAnimesFromCategory = async ({
+  category,
+  page,
+}: IGetAnimesFromCategoryProps): Promise<IAnime[]> => {
+  const response = await Api().get(
+    `genre/${category}` + page ? `?page=${page}` : ""
+  );
+  return response.data;
+};
 export const ApiServices = {
   recentRealize,
   getPopular,
   getAnimeDetails,
+  getAnimesFromCategory,
 };

@@ -92,7 +92,7 @@ export const Categories = () => {
 
   return (
     <>
-      <h4 style={{ fontSize: "1.5rem" }}>Categorias</h4>
+      <h4 style={{ fontSize: "1.5rem", margin: "2rem 0" }}>Categories</h4>
       <ListOfCategories>
         {categories.map((categorie) => {
           return <li>{categorie}</li>;

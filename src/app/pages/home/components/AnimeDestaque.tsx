@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { ApiServices } from "../../../services/api/ApiServices";
-import { IAnime, IAnimeDetails } from "../../../shared/types/TypesAnime";
+import { IAnimeDetails } from "../../../shared/types/TypesAnime";
 
 const Destaque = styled.div`
   margin: 1.5rem 0 1.5rem 0;
@@ -10,9 +10,10 @@ const Destaque = styled.div`
 
   h2 {
     align-self: flex-start;
-    border-radius: 20px 20px 0 0;
-    border: 1px solid black;
+    border-radius: 0 20px 0 0;
+    background: #2c3333;
     padding: 10px;
+    color: #e7f6f2;
   }
   .image-wrapper {
     position: relative;
@@ -26,7 +27,7 @@ const Destaque = styled.div`
       to top,
       rgba(0, 0, 0),
       rgba(0, 0, 0),
-      rgba(0, 0, 0, 0.7)
+      rgba(0, 0, 0, 0.5)
     );
     img {
       width: 100%;
@@ -37,6 +38,14 @@ const Destaque = styled.div`
       bottom: 5rem;
       left: 2rem;
       color: #fff;
+      filter: drop-shadow(0 0 15px rgb(0, 0, 0));
+      h3 {
+        font-size: 2.5rem;
+      }
+      p {
+        font-size: 1.2rem;
+        letter-spacing: 0.01rem;
+      }
     }
   }
 `;
@@ -58,7 +67,7 @@ export const AnimeDestaque = ({ animeID }: IAnimeDestaqueProps) => {
 
   return (
     <Destaque>
-      <h2>Anime Destaque</h2>
+      <h2>Recommended Anime</h2>
       <div>
         <div className="image-wrapper">
           <img src={animeDetails?.animeImg} alt={animeDetails?.animeTitle} />
