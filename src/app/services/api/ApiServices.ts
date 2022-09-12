@@ -9,8 +9,8 @@ const getPopular = async (page: string): Promise<IAnime[]> => {
   const response = await Api().get(`popular${page}`);
   return response.data;
 };
-const getAnimeDetails = async (animeTitle: string): Promise<IAnimeDetails> => {
-  const response = await Api().get(`anime-details/${animeTitle}`);
+const getAnimeDetails = async (animeId: string): Promise<IAnimeDetails> => {
+  const response = await Api().get(`anime-details/${animeId}`);
   return response.data;
 };
 

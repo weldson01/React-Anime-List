@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { IAnime } from "../../../shared/types/TypesAnime";
 
@@ -56,17 +57,19 @@ export const AnimesPopulares = ({ animes }: IAnimesPopularesProps) => {
         {animes &&
           animes.map((anime: IAnime) => {
             return (
-              <li>
-                <div className="image-wrapper">
-                  <img src={anime.animeImg} alt={anime.animeTitle} />
-                </div>
-                <div className="info">
-                  <h5 className="title">
-                    {anime.animeTitle && anime.animeTitle?.length > 20
-                      ? `${anime.animeTitle?.slice(0, 30)} ...`
-                      : anime.animeTitle}
-                  </h5>
-                </div>
+              <li key={anime.animeId}>
+                <Link to={`/anime/${anime.animeId}`}>
+                  <div className="image-wrapper">
+                    <img src={anime.animeImg} alt={anime.animeTitle} />
+                  </div>
+                  <div className="info">
+                    <h5 className="title">
+                      {anime.animeTitle && anime.animeTitle?.length > 20
+                        ? `${anime.animeTitle?.slice(0, 30)} ...`
+                        : anime.animeTitle}
+                    </h5>
+                  </div>
+                </Link>
               </li>
             );
           })}

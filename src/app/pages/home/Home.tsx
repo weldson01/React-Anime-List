@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import styled from "styled-components";
 import { ApiServices } from "../../services/api/ApiServices";
 import { Generator } from "../../shared/helper/GenerateNumber";
 import { IAnime } from "../../shared/types/TypesAnime";
@@ -9,12 +8,6 @@ import {
   AnimesPopulares,
   PaginationPopularAnime,
 } from "./components";
-const Main = styled.main`
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  justify-content: center;
-`;
 
 export const Home = () => {
   const [popularAnimes, setPopularAnimes] = useState<IAnime[]>([] as IAnime[]);
@@ -30,7 +23,7 @@ export const Home = () => {
     setPagePopular(page);
   };
   return (
-    <Main>
+    <main>
       {popularAnimes && (
         <AnimeDestaque
           animeID={
@@ -44,6 +37,6 @@ export const Home = () => {
         pageFunction={handleSelecetPage}
         page={pagePopular}
       />
-    </Main>
+    </main>
   );
 };
