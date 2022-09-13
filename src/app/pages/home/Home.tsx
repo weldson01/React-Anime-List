@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import { ApiServices } from "../../services/api/ApiServices";
 import { Generator } from "../../shared/helper/GenerateNumber";
 import { IAnime } from "../../shared/types/TypesAnime";
+import { AnimeDestaque } from "./components";
 import {
-  Categories,
-  AnimeDestaque,
-  PaginationPopularAnime,
-} from "./components";
-import { CardAnimes } from "../../shared/components";
+  CardAnimes,
+  Pagination,
+  CategoriesMenu,
+} from "../../shared/components";
 export const Home = () => {
   const [popularAnimes, setPopularAnimes] = useState<IAnime[]>([] as IAnime[]);
   const [pagePopular, setPagePopular] = useState(1);
@@ -30,11 +30,12 @@ export const Home = () => {
           }
         />
       )}
-      <Categories />
+      <CategoriesMenu />
       <CardAnimes animes={popularAnimes} title="Popular Animes" />
-      <PaginationPopularAnime
+      <Pagination
         pageFunction={handleSelecetPage}
         page={pagePopular}
+        maxPage={504}
       />
     </main>
   );

@@ -21,9 +21,8 @@ const getAnimesFromCategory = async ({
   category,
   page,
 }: IGetAnimesFromCategoryProps): Promise<IAnime[]> => {
-  const response = await Api().get(
-    `genre/${category}` + page ? `?page=${page}` : ""
-  );
+  const url = `genre/${category}?page=${page}`;
+  const response = await Api().get(url);
   return response.data;
 };
 export const ApiServices = {

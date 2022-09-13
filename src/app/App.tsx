@@ -11,12 +11,18 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto', sans-serif;
 
   }
+  body{
+    background-color: #f7f7f7;
+
+  }
   main{
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
+  margin: 1rem 0 2rem 0;
   background-color: #f7f7f7;
+
   }
 `;
 

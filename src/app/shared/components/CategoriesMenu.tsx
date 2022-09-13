@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const ListOfCategories = styled.ul`
@@ -24,7 +25,7 @@ const ListOfCategories = styled.ul`
   overflow-x: scroll;
   li {
     text-decoration: none;
-    min-width: 10rem;
+    min-width: 12rem;
     font-size: 1.5rem;
     text-align: center;
     border-radius: 30px;
@@ -36,10 +37,14 @@ const ListOfCategories = styled.ul`
     &:hover {
       background-color: #444;
     }
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
   }
 `;
 
-export const Categories = () => {
+export const CategoriesMenu = () => {
   const categories = [
     "action",
     "adventure",
@@ -94,8 +99,12 @@ export const Categories = () => {
     <>
       <h4 style={{ fontSize: "1.5rem", margin: "2rem 0" }}>Categories</h4>
       <ListOfCategories>
-        {categories.map((categorie) => {
-          return <li>{categorie}</li>;
+        {categories.map((category) => {
+          return (
+            <li>
+              <Link to={`/anime/categories/${category}`}>{category}</Link>
+            </li>
+          );
         })}
       </ListOfCategories>
     </>

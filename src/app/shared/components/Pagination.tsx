@@ -27,11 +27,13 @@ const Navegation = styled.ul`
 interface IPaginationPopularAnimeProps {
   pageFunction: (page: number) => void;
   page: number;
+  maxPage: number;
 }
 
-export const PaginationPopularAnime = ({
+export const Pagination = ({
   pageFunction,
   page,
+  maxPage,
 }: IPaginationPopularAnimeProps) => {
   const handleChangePage = (page: number) => {
     pageFunction(page);
@@ -65,7 +67,7 @@ export const PaginationPopularAnime = ({
         <li>
           <button>{page}</button>
         </li>
-        {page < 504 && (
+        {page < maxPage && (
           <li>
             <button
               onClick={() => {
@@ -76,14 +78,14 @@ export const PaginationPopularAnime = ({
             </button>
           </li>
         )}
-        {page < 503 && (
+        {page < maxPage - 1 && (
           <li>
             <button
               onClick={() => {
-                handleChangePage(504);
+                handleChangePage(maxPage);
               }}
             >
-              {504}
+              {maxPage}
             </button>
           </li>
         )}
