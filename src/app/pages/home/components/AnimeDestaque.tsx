@@ -88,7 +88,7 @@ export const AnimeDestaque = ({ animeID }: IAnimeDestaqueProps) => {
             <h3>{animeDetails?.animeTitle}</h3>
             <p>{animeDetails?.synopsis}</p>
             <ul className="genres">
-              {animeDetails?.genres.slice(0, 3)?.map((genre) => {
+              {animeDetails?.genres?.slice(0, 3)?.map((genre) => {
                 return <li>{genre}</li>;
               })}
             </ul>
