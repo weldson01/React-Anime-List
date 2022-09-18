@@ -1,6 +1,7 @@
 import { MagnifyingGlass } from "phosphor-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import logo from "../../../assets/logo.svg";
 import styled from "styled-components";
 const HeaderPage = styled.header`
   display: flex;
@@ -64,7 +65,7 @@ export const Header = () => {
     <HeaderPage>
       <Link to={"/"}>
         <div className="logo">
-          <img src="/src/app/assets/logo.svg" alt="logo" />
+          <img src={logo} alt="logo" />
           <h2>React Anime List</h2>
         </div>
       </Link>
