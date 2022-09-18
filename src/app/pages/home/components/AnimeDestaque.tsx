@@ -35,7 +35,7 @@ const Destaque = styled.div`
     }
     .anime-destaque-info {
       position: absolute;
-      bottom: 5rem;
+      bottom: 4rem;
       left: 2rem;
       color: #fff;
       filter: drop-shadow(0 0 15px rgb(0, 0, 0));
@@ -45,6 +45,19 @@ const Destaque = styled.div`
       p {
         font-size: 1.2rem;
         letter-spacing: 0.01rem;
+      }
+      .genres {
+        display: flex;
+        flex-flow: row nowrap;
+        list-style: none;
+        gap: 1rem;
+        margin-top: 1rem;
+        li {
+          border-radius: 15px;
+          padding: 0.5rem 1rem;
+          background-color: #222;
+          color: #fff;
+        }
       }
     }
   }
@@ -74,6 +87,11 @@ export const AnimeDestaque = ({ animeID }: IAnimeDestaqueProps) => {
           <div className="anime-destaque-info">
             <h3>{animeDetails?.animeTitle}</h3>
             <p>{animeDetails?.synopsis}</p>
+            <ul className="genres">
+              {animeDetails?.genres.slice(0, 3)?.map((genre) => {
+                return <li>{genre}</li>;
+              })}
+            </ul>
           </div>
         </div>
       </div>

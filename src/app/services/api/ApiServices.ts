@@ -13,6 +13,12 @@ const getAnimeDetails = async (animeId: string): Promise<IAnimeDetails> => {
   const response = await Api().get(`anime-details/${animeId}`);
   return response.data;
 };
+
+const searchAnime = async (title: string): Promise<IAnime[]> => {
+  const response = await Api().get(`search?keyw=${title}`);
+  return response.data;
+};
+
 interface IGetAnimesFromCategoryProps {
   category: string;
   page?: number;
@@ -30,4 +36,5 @@ export const ApiServices = {
   getPopular,
   getAnimeDetails,
   getAnimesFromCategory,
+  searchAnime,
 };

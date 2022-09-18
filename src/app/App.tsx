@@ -22,18 +22,18 @@ const GlobalStyle = createGlobalStyle`
   justify-content: center;
   margin: 1rem 0 2rem 0;
   background-color: #f7f7f7;
-
+  min-height:100vh;
   }
 `;
 
 export const App = () => {
   return (
     <>
-      <Header />
       <BrowserRouter>
+        <Header />
         <AppRoutes />
+        <Footer />
       </BrowserRouter>
-      <Footer />
       <GlobalStyle />
     </>
   );
