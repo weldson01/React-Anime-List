@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { ApiServices } from "../../../services/api/ApiServices";
 import { IAnimeDetails } from "../../../shared/types/TypesAnime";
 
 const Destaque = styled.div`
+  width: 80vw;
   margin: 1.5rem 0 1.5rem 0;
   display: flex;
   flex-flow: column nowrap;
@@ -17,8 +19,8 @@ const Destaque = styled.div`
   }
   .image-wrapper {
     position: relative;
-    width: 1200px;
-    height: 500px;
+    width: 100%;
+    height: 75vh;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -61,6 +63,34 @@ const Destaque = styled.div`
       }
     }
   }
+  @media screen and (max-width: 425px) {
+    h2 {
+      font-size: 1.2rem;
+    }
+    .image-wrapper {
+      width: 100%;
+      height: 100%;
+      .anime-destaque-info {
+        left: 5px;
+        h3 {
+          font-size: 2rem;
+        }
+        p {
+          font-size: 1rem;
+          max-height: 9rem;
+          max-width: 100%;
+          padding: 10px;
+          overflow-y: scroll;
+        }
+        .genres {
+          gap: 0.2rem;
+          li {
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+  }
 `;
 interface IAnimeDestaqueProps {
   animeID: string;
@@ -82,18 +112,20 @@ export const AnimeDestaque = ({ animeID }: IAnimeDestaqueProps) => {
     <Destaque>
       <h2>Recommended Anime</h2>
       <div>
-        <div className="image-wrapper">
-          <img src={animeDetails?.animeImg} alt={animeDetails?.animeTitle} />
-          <div className="anime-destaque-info">
-            <h3>{animeDetails?.animeTitle}</h3>
-            <p>{animeDetails?.synopsis}</p>
-            <ul className="genres">
-              {animeDetails?.genres?.slice(0, 3)?.map((genre) => {
-                return <li>{genre}</li>;
-              })}
-            </ul>
+        <Link to={`/anime/${animeID}`}>
+          <div className="image-wrapper">
+            <img src={animeDetails?.animeImg} alt={animeDetails?.animeTitle} />
+            <div className="anime-destaque-info">
+              <h3>{animeDetails?.animeTitle}</h3>
+              <p>{animeDetails?.synopsis}</p>
+              <ul className="genres">
+                {animeDetails?.genres?.slice(0, 3)?.map((genre) => {
+                  return <li key={genre}>{genre}</li>;
+                })}
+              </ul>
+            </div>
           </div>
-        </div>
+        </Link>
       </div>
     </Destaque>
   );

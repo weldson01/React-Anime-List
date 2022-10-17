@@ -7,15 +7,15 @@ const ListOfCategories = styled.ul`
   }
   &::-webkit-scrollbar-track {
     border-radius: 10px;
-
     background-color: #333;
   }
   &::-webkit-scrollbar-thumb {
+    min-width: 15vw;
     background-color: #999;
     border-radius: 20px;
   }
   list-style: none;
-  width: 1200px;
+  width: 80vw;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -25,7 +25,8 @@ const ListOfCategories = styled.ul`
   overflow-x: scroll;
   li {
     text-decoration: none;
-    min-width: 12rem;
+    white-space: nowrap;
+    min-width: auto;
     font-size: 1.5rem;
     text-align: center;
     border-radius: 30px;
@@ -40,6 +41,14 @@ const ListOfCategories = styled.ul`
     a {
       color: #fff;
       text-decoration: none;
+    }
+  }
+  @media screen and (max-width: 425px) {
+    li {
+      min-width: auto;
+      max-width: auto;
+      font-size: 1rem;
+      text-overflow: initial;
     }
   }
 `;
@@ -101,7 +110,7 @@ export const CategoriesMenu = () => {
       <ListOfCategories>
         {categories.map((category) => {
           return (
-            <li>
+            <li key={category}>
               <Link to={`/anime/categories/${category}`}>{category}</Link>
             </li>
           );

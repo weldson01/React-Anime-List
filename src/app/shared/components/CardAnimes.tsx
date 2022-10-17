@@ -9,14 +9,17 @@ const AnimesList = styled.ul`
   justify-content: center;
   gap: 0.5rem;
   list-style: none;
-  max-width: 1300px;
+  max-width: 100vw;
   li {
     position: relative;
     overflow: hidden;
     cursor: pointer;
     .image-wrapper {
-      width: 15rem;
-      height: 20rem;
+      aspect-ratio: 8/12;
+      width: calc(100vw / 6);
+      @media screen and (max-width: 420px) {
+        width: calc(100vw / 5);
+      }
       overflow: hidden;
       img {
         width: 100%;

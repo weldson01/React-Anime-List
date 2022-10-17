@@ -9,11 +9,15 @@ const GlobalStyle = createGlobalStyle`
     padding:0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
-
   }
   body{
     background-color: #f7f7f7;
-
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  #root{
+    display:flex;
+    flex-direction: column;
   }
   main{
   display: flex;
@@ -22,8 +26,10 @@ const GlobalStyle = createGlobalStyle`
   justify-content: center;
   margin: 1rem 0 2rem 0;
   background-color: #f7f7f7;
-  min-height:100vh;
+  min-height:75vh;
+  flex:1;
   }
+  
 `;
 
 export const App = () => {

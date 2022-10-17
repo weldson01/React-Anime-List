@@ -21,12 +21,13 @@ const Rotation = keyframes`
 `;
 
 const ShowAnime = styled.div`
-  width: 1200px;
-  height: 600px;
+  width: 100vw;
+  min-height: 100vh;
   background-color: #395b64;
   margin: 2rem 0;
   display: flex;
   flex-flow: row nowrap;
+
   .anime-details {
     max-width: 20rem;
     .anime-image {
@@ -98,6 +99,16 @@ const ShowAnime = styled.div`
       font-size: 1.5rem;
       &::first-letter {
         padding-left: 1rem;
+      }
+    }
+  }
+  @media screen and (max-width: 425px) {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    .anime-details {
+      .info {
+        padding: 1rem;
       }
     }
   }
