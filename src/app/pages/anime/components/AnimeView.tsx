@@ -147,7 +147,7 @@ export const AnimeView = ({ animeId }: IAnimeViewProps) => {
   }, [animeId]);
   const handleToogleFavoriteAnime = () => {
     setListAnimesId((prev: [{ animeId: string; animeTitle: string }]) => {
-      if (prev.some((item) => item.animeId === animeId)) {
+      if (prev?.some((item) => item.animeId === animeId)) {
         const newList = prev.filter((idAnime) =>
           idAnime.animeId === animeId ? false : true
         );
@@ -157,6 +157,9 @@ export const AnimeView = ({ animeId }: IAnimeViewProps) => {
     });
   };
   useEffect(() => {
+    if (listAnimesId) {
+      localStorage.setItem("lista", JSON.stringify([]));
+    }
     localStorage.setItem("lista", JSON.stringify(listAnimesId));
   }, [listAnimesId]);
 
