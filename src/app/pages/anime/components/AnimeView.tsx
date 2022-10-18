@@ -23,29 +23,30 @@ const Rotation = keyframes`
 `;
 
 const ShowAnime = styled.div`
-  width: 100vw;
+  width: 95vw;
   min-height: 100vh;
   background-color: #395b64;
   margin: 2rem 0;
   display: flex;
   flex-flow: row nowrap;
-
+  padding: 0 2rem;
   .anime-details {
     max-width: 20rem;
     .anime-image {
       width: 20rem;
-      height: 75%;
+      height: 70%;
       overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
       img {
         width: 100%;
+        height: 90%;
       }
     }
     .info {
       width: 100%;
-      height: 25%;
+      height: 30%;
       background-color: #2c3333;
       display: flex;
       flex-flow: column nowrap;
@@ -120,6 +121,9 @@ const ShowAnime = styled.div`
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+    width: 100vw;
+    padding: 0;
+
     .anime-details {
       .info {
         padding: 1rem;
