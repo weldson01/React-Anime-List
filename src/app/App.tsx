@@ -2,6 +2,7 @@ import { BrowserRouter } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import { AppRoutes } from "./routes";
 import { Footer, Header } from "./shared/components";
+import { FavoriteAnimesContextProvider } from "./shared/contexts/FavoriteAnimesContext";
 
 const GlobalStyle = createGlobalStyle`
   *{
@@ -36,9 +37,11 @@ export const App = () => {
   return (
     <>
       <BrowserRouter>
-        <Header />
-        <AppRoutes />
-        <Footer />
+        <FavoriteAnimesContextProvider>
+          <Header />
+          <AppRoutes />
+          <Footer />
+        </FavoriteAnimesContextProvider>
       </BrowserRouter>
       <GlobalStyle />
     </>

@@ -5,10 +5,12 @@ import {
   CircleWavy,
   CircleWavyCheck,
   Hash,
+  Heart,
 } from "phosphor-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import styled, { keyframes } from "styled-components";
 import { ApiServices } from "../../../services/api/ApiServices";
+import { FavoriteAnimesContext } from "../../../shared/contexts/FavoriteAnimesContext";
 import { IAnimeDetails } from "../../../shared/types/TypesAnime";
 
 const Rotation = keyframes`
@@ -70,6 +72,18 @@ const ShowAnime = styled.div`
       .Completed {
         color: #6cd9c3;
       }
+      .Add-to-list {
+        button {
+          background-color: transparent;
+          outline: none;
+          border: none;
+
+          svg {
+            font-size: 4rem;
+            filter: drop-shadow(0px 2px 10px black);
+          }
+        }
+      }
       .genres {
         display: flex;
         flex-flow: row wrap;
@@ -118,12 +132,30 @@ interface IAnimeViewProps {
   animeId: string;
 }
 export const AnimeView = ({ animeId }: IAnimeViewProps) => {
+  const { listAnimesId, setListAnimesId } = useContext(FavoriteAnimesContext);
+
   const [anime, setAnime] = useState<IAnimeDetails>({} as IAnimeDetails);
+
   useEffect(() => {
     ApiServices.getAnimeDetails(animeId).then((anime) => {
       setAnime(anime);
     });
   }, [animeId]);
+  const handleToogleFavoriteAnime = () => {
+    setListAnimesId((prev: [{ animeId: string; animeTitle: string }]) => {
+      if (prev.some((item) => item.animeId === animeId)) {
+        const newList = prev.filter((idAnime) =>
+          idAnime.animeId === animeId ? false : true
+        );
+        return newList;
+      }
+      return [...prev, { animeId: animeId, animeTitle: anime.animeTitle }];
+    });
+  };
+  useEffect(() => {
+    localStorage.setItem("lista", JSON.stringify(listAnimesId));
+  }, [listAnimesId]);
+
   return (
     <ShowAnime>
       <div className="anime-details">
@@ -145,6 +177,17 @@ export const AnimeView = ({ animeId }: IAnimeViewProps) => {
           </div>
           <div className="episodes-total">
             <Hash /> <p>{`Total Episodes ${anime?.totalEpisodes}`}</p>
+          </div>
+          <div className="Add-to-list">
+            <button onClick={handleToogleFavoriteAnime}>
+              {listAnimesId?.some(
+                (item: { animeId: string }) => item.animeId === animeId
+              ) ? (
+                <Heart weight="fill" style={{ color: "rgb(200,20,45)" }} />
+              ) : (
+                <Heart weight="bold" style={{ color: "rgb(500, 500 ,500)" }} />
+              )}
+            </button>
           </div>
           <div className="genres">
             {anime?.genres?.slice(0, 3).map((genre) => {

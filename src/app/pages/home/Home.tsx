@@ -14,7 +14,6 @@ export const Home = () => {
   useEffect(() => {
     ApiServices.getPopular(`?page=${pagePopular}`).then((data) => {
       setPopularAnimes(data);
-      console.log(data);
     });
   }, [pagePopular]);
 
