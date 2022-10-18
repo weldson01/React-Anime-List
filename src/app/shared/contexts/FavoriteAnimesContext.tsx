@@ -7,7 +7,7 @@ export const FavoriteAnimesContextProvider = ({ children }: any) => {
   useEffect(() => {
     setListAnimesId(() => {
       const data = localStorage.getItem("lista");
-      if (data) {
+      if (data != undefined || data != null) {
         return JSON.parse(data);
       }
     });
