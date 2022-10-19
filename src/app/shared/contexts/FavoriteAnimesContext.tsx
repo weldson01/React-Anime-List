@@ -1,17 +1,10 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 export const FavoriteAnimesContext = createContext<any>({});
 
 export const FavoriteAnimesContextProvider = ({ children }: any) => {
-  const [listAnimesId, setListAnimesId] = useState<[{}]>([{}]);
-  useEffect(() => {
-    setListAnimesId(() => {
-      const data = localStorage.getItem("lista");
-      if (data != undefined || data != null) {
-        return JSON.parse(data);
-      }
-    });
-  }, []);
+  const [listAnimesId, setListAnimesId] = useState<any>([]);
+
   return (
     <FavoriteAnimesContext.Provider value={{ listAnimesId, setListAnimesId }}>
       {children}

@@ -11,6 +11,7 @@ import { useEffect, useState, useContext } from "react";
 import styled, { keyframes } from "styled-components";
 import { ApiServices } from "../../../services/api/ApiServices";
 import { FavoriteAnimesContext } from "../../../shared/contexts/FavoriteAnimesContext";
+import { useFavoriteAnimes } from "../../../shared/hooks/UseFavoriteAnimes";
 import { IAnimeDetails } from "../../../shared/types/TypesAnime";
 
 const Rotation = keyframes`
@@ -136,8 +137,8 @@ interface IAnimeViewProps {
   animeId: string;
 }
 export const AnimeView = ({ animeId }: IAnimeViewProps) => {
-  const { listAnimesId, setListAnimesId } = useContext(FavoriteAnimesContext);
-
+  // const { listAnimesId, setListAnimesId } = useContext(FavoriteAnimesContext);
+  const { listAnimesId, setListAnimesId } = useFavoriteAnimes();
   const [anime, setAnime] = useState<IAnimeDetails>({} as IAnimeDetails);
 
   useEffect(() => {
@@ -145,23 +146,27 @@ export const AnimeView = ({ animeId }: IAnimeViewProps) => {
       setAnime(anime);
     });
   }, [animeId]);
+
   const handleToogleFavoriteAnime = () => {
-    setListAnimesId((prev: [{ animeId: string; animeTitle: string }]) => {
-      if (prev?.some((item) => item.animeId === animeId)) {
-        const newList = prev.filter((idAnime) =>
-          idAnime.animeId === animeId ? false : true
-        );
-        return newList;
+    setListAnimesId(
+      (prev: [{ animeId: string; animeTitle: string; animeImage: string }]) => {
+        if (prev?.some((item) => item.animeId === animeId)) {
+          const newList = prev.filter((idAnime) =>
+            idAnime.animeId === animeId ? false : true
+          );
+          return newList;
+        }
+        return [
+          ...prev,
+          {
+            animeId: animeId,
+            animeTitle: anime.animeTitle,
+            animeImage: anime.animeImg,
+          },
+        ];
       }
-      return [...prev, { animeId: animeId, animeTitle: anime.animeTitle }];
-    });
+    );
   };
-  useEffect(() => {
-    if (listAnimesId) {
-      localStorage.setItem("lista", JSON.stringify([]));
-    }
-    localStorage.setItem("lista", JSON.stringify(listAnimesId));
-  }, [listAnimesId]);
 
   return (
     <ShowAnime>
