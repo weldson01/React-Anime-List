@@ -149,7 +149,7 @@ export const AnimeView = ({ animeId }: IAnimeViewProps) => {
 
   const handleToogleFavoriteAnime = () => {
     setListAnimesId(
-      (prev: [{ animeId: string; animeTitle: string; animeImage: string }]) => {
+      (prev: [{ animeId: string; animeTitle: string; animeImg: string }]) => {
         if (prev?.some((item) => item.animeId === animeId)) {
           const newList = prev.filter((idAnime) =>
             idAnime.animeId === animeId ? false : true
@@ -161,7 +161,7 @@ export const AnimeView = ({ animeId }: IAnimeViewProps) => {
           {
             animeId: animeId,
             animeTitle: anime.animeTitle,
-            animeImage: anime.animeImg,
+            animeImg: anime.animeImg,
           },
         ];
       }

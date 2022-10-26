@@ -10,7 +10,6 @@ export const AnimeListFavorite = () => {
   useEffect(() => {
     setList(() => {
       const storage = localStorage.getItem("list");
-      console.log(storage);
       if (storage) {
         return JSON.parse(storage);
       }
