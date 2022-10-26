@@ -65,7 +65,7 @@ export const CardAnimes = ({ animes, title }: ICardAnimes) => {
               <li key={anime.animeId}>
                 <Link to={`/anime/${anime.animeId}`}>
                   <div className="image-wrapper">
-                    <img src={anime.animeImg} alt={anime.animeTitle} />
+                    <img src={anime?.animeImg} alt={anime.animeTitle} />
                   </div>
                   <div className="info">
                     <h5 className="title">
